@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sortaura — Sorting Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ─── SIDEBAR ─────────────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-mark">S</div>
+      <div>
+        <h1 class="app-name">Sortaura</h1>
+        <p class="app-sub">Sorting Visualizer</p>
+      </div>
+    </div>
+
+    <nav class="algo-nav">
+      <p class="nav-label">Algorithms</p>
+      <ul class="algo-list" id="algoList">
+        <li class="algo-item active" data-algo="bubble">
+          <span class="algo-icon">◎</span> Bubble Sort
+        </li>
+        <li class="algo-item" data-algo="selection">
+          <span class="algo-icon">◈</span> Selection Sort
+        </li>
+        <li class="algo-item" data-algo="insertion">
+          <span class="algo-icon">◇</span> Insertion Sort
+        </li>
+        <li class="algo-item" data-algo="quick">
+          <span class="algo-icon">◆</span> Quick Sort
+        </li>
+        <li class="algo-item" data-algo="merge">
+          <span class="algo-icon">◉</span> Merge Sort
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-section">
+      <p class="nav-label">Array Type</p>
+      <div class="array-type-group" id="arrayTypeGroup">
+        <button class="type-btn active" data-type="random">Random</button>
+        <button class="type-btn" data-type="nearly">Nearly Sorted</button>
+        <button class="type-btn" data-type="reverse">Reversed</button>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <p class="footer-note">Built with ♡ & vanilla JS</p>
+    </div>
+  </aside>
+
+  <!-- ─── HAMBURGER (mobile) ──────────────────────────────────────── -->
+  <button class="hamburger" id="hamburger" aria-label="Toggle sidebar">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- ─── MAIN ────────────────────────────────────────────────────── -->
+  <main class="main" id="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="current-algo-label" id="currentAlgoLabel">Bubble Sort</span>
+        <span class="status-pill" id="statusPill">Ready</span>
+      </div>
+      <div class="topbar-right">
+        <div class="slider-group">
+          <label>Size <span id="sizeVal">40</span></label>
+          <input type="range" id="sizeSlider" min="10" max="120" value="40" />
+        </div>
+        <div class="slider-group">
+          <label>Speed <span id="speedVal">5</span></label>
+          <input type="range" id="speedSlider" min="1" max="10" value="5" />
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTROL BAR -->
+    <div class="controls">
+      <button class="btn btn-primary" id="btnGenerate">⟳ New Array</button>
+      <button class="btn btn-accent" id="btnStart">▶ Start</button>
+      <button class="btn btn-ghost" id="btnPause" disabled>⏸ Pause</button>
+      <button class="btn btn-ghost" id="btnStep" disabled>⏭ Step</button>
+      <button class="btn btn-ghost" id="btnReset" disabled>↺ Reset</button>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <span class="stat-value" id="statComparisons">0</span>
+        <span class="stat-label">Comparisons</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="statSwaps">0</span>
+        <span class="stat-label">Swaps</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="statSize">40</span>
+        <span class="stat-label">Array Size</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="statTime">0ms</span>
+        <span class="stat-label">Elapsed</span>
+      </div>
+    </div>
+
+    <!-- VISUALIZATION AREA -->
+    <section class="viz-wrapper">
+      <div class="viz-area" id="vizArea"></div>
+    </section>
+
+    <!-- EXPLANATION PANEL -->
+    <section class="info-panel">
+      <div class="explanation-box">
+        <div class="explanation-header">
+          <span class="exp-dot"></span>
+          <span id="expTitle">What's happening?</span>
+        </div>
+        <p class="explanation-text" id="expText">
+          Select an algorithm from the sidebar, then press <strong>Start</strong> to watch it sort step by step.
+        </p>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><span class="swatch swatch-default"></span>Unsorted</div>
+        <div class="legend-item"><span class="swatch swatch-comparing"></span>Comparing</div>
+        <div class="legend-item"><span class="swatch swatch-swapping"></span>Swapping</div>
+        <div class="legend-item"><span class="swatch swatch-pivot"></span>Pivot</div>
+        <div class="legend-item"><span class="swatch swatch-sorted"></span>Sorted</div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
